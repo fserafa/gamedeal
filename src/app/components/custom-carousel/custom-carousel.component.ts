@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, input, signal } from '@angular/core';
 import { Deal } from '../../services/deals.service';
 
@@ -6,7 +7,7 @@ import { Deal } from '../../services/deals.service';
   standalone: true,
   templateUrl: './custom-carousel.component.html',
   styleUrl: './custom-carousel.component.css',
-  import: [DatePipe]
+  imports: [DatePipe]
 })
 export class CustomCarouselComponent {
   data = input<Deal[][]>([]);

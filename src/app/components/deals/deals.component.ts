@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { Deal } from '../../services/deals.service';
 
@@ -6,7 +7,7 @@ import { Deal } from '../../services/deals.service';
   standalone: true,
   templateUrl: './deals.component.html',
   styleUrl: './deals.component.css',
-  import: [DatePipe]
+  imports: [DatePipe]
 })
 export class DealsComponent {
   deals = input<Deal[]>([]);
