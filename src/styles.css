@@ -1,0 +1,298 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --bg-color: #0d1117;
+    --card-bg: rgba(22, 27, 34, 0.7);
+    --card-border: rgba(240, 246, 252, 0.1);
+    --text-primary: #f0f6fc;
+    --text-secondary: #8b949e;
+    --accent-color: #00f2fe;
+    --accent-gradient: linear-gradient(135deg, #00cdac 0%, #028190 100%);
+    --free-games-gradient: linear-gradient(135deg, #8a2be2 0%, #4facfe 100%);
+    --card-hover-border: rgba(0, 242, 254, 0.4);
+    --font-family: 'Outfit', sans-serif;
+}
+
+html, body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #8b949e;
+}
+
+/* Background Mesh Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 80% 20%, rgba(2, 129, 144, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Fixed Navigation bar */
+.fixed-nav {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    backdrop-filter: blur(12px);
+    background-color: rgba(13, 17, 23, 0.75) !important;
+    border-bottom: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.fixed-nav .navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.fixed-nav .nav-link {
+    font-weight: 500;
+    color: var(--text-secondary) !important;
+    transition: color 0.2s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.fixed-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.fixed-nav .nav-link:hover {
+    color: var(--text-primary) !important;
+}
+
+.fixed-nav .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Cards Premium */
+.card-post {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(16px);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.card-post::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 242, 254, 0.03) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card-post:hover {
+    transform: translateY(-5px);
+    border-color: var(--card-hover-border);
+    box-shadow: 0 12px 30px rgba(0, 242, 254, 0.1);
+}
+
+.card-post:hover::before {
+    opacity: 1;
+}
+
+/* Deals Component layout */
+.post-preview {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.post-preview:hover {
+    border-color: rgba(0, 242, 254, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transform: translateX(4px);
+}
+
+.post-title {
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+}
+
+.post-title:hover {
+    color: var(--accent-color);
+}
+
+.deal-link {
+    text-decoration: none;
+}
+
+.deal-link:hover {
+    text-decoration: none;
+}
+
+.post-url-text {
+    word-break: break-all;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+/* Badges */
+.badge-store {
+    background: var(--accent-gradient);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4em 0.8em;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Meta Data */
+.meta-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.meta-text a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.meta-text a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination custom styled */
+.pagination {
+    gap: 6px;
+}
+
+.page-item .page-link {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.page-item .page-link:hover {
+    background-color: rgba(0, 242, 254, 0.1);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.page-item.active .page-link {
+    background: var(--accent-gradient) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+.page-item.disabled .page-link {
+    background-color: rgba(22, 27, 34, 0.4);
+    border-color: var(--card-border);
+    color: #4b525a;
+}
+
+/* Free Games Headings & Carousel */
+.free-games-carousel-item {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.05) 0%, rgba(79, 172, 254, 0.05) 100%);
+    border: 1px solid rgba(138, 43, 226, 0.15);
+    border-radius: 24px;
+    padding: 3rem 1.5rem;
+}
+
+.carousel-indicators {
+    bottom: -40px;
+}
+
+/* Custom styles for spinner and section headings */
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #ffffff, var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+}
+
+.text-gradient-free {
+    background: var(--free-games-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.pulse-spinner {
+    width: 3.5rem;
+    height: 3.5rem;
+    color: var(--accent-color);
+}
+
+/* Micro-animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

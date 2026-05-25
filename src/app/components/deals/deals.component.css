@@ -1,0 +1,7 @@
+.post-preview {
+  border-left: 4px solid rgba(240, 246, 252, 0.1);
+}
+
+.post-preview:hover {
+  border-left-color: var(--accent-color);
+}

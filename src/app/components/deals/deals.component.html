@@ -1,0 +1,51 @@
+<div class="mt-5" id="deals">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <h2 class="section-title">Latest Deals 🏷️</h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      @if (deals() && deals().length > 0) {
+        <div class="d-flex flex-column gap-3">
+          @for (deal of deals(); track deal.data.id) {
+            <div class="post-preview animate-fade-in-up">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                <span
+                  class="badge badge-store"
+                  [style.background]="getStoreGradient(deal.data.store)"
+                >
+                  #{{ deal.data.store }}
+                </span>
+                <p class="meta-text small">
+                  Posted {{ deal.data.created | date: 'lll' }} via
+                  <a
+                    [href]="'https://reddit.com' + deal.data.permalink"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >reddit</a
+                  >
+                </p>
+              </div>
+
+              <a
+                [href]="deal.data.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="deal-link d-block"
+              >
+                <h3 class="post-title h5 mb-2">{{ deal.data.title }}</h3>
+                <p class="post-url-text mb-0">{{ deal.data.url }}</p>
+              </a>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="text-center py-5">
+          <p class="text-secondary">No deals found.</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

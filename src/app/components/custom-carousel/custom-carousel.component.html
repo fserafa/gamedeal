@@ -1,0 +1,111 @@
+@if (data() && data().length > 0) {
+  <div class="position-relative py-4" id="free">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="section-title text-center text-lg-start mb-4">
+          <span class="text-gradient-free">Free Games</span> 🎮
+        </h2>
+      </div>
+    </div>
+
+    <div class="custom-carousel">
+      <div class="custom-carousel-inner">
+        @for (slide of data(); track $index) {
+          <div class="custom-carousel-item" [class.active]="$index === activeIndex()">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                  <div class="row g-4">
+                    @for (deal of slide; track deal.data.id) {
+                      <div class="col-lg-4 col-md-6 col-sm-12 d-flex animate-fade-in-up">
+                        <div
+                          class="card-post d-flex flex-column justify-content-between w-100"
+                          (click)="openUrl(deal.data.url)"
+                          style="cursor: pointer"
+                          role="button"
+                          tabindex="0"
+                          (keydown.enter)="openUrl(deal.data.url)"
+                        >
+                          <div>
+                            <span class="badge badge-store mb-3">#{{ deal.data.store }}</span>
+                            <a
+                              class="deal-link d-block"
+                              [href]="deal.data.url"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              (click)="$event.stopPropagation()"
+                            >
+                              <h3 class="post-title h5">{{ deal.data.title }}</h3>
+                            </a>
+                          </div>
+                          <div
+                            class="mt-4 pt-3 border-top"
+                            style="border-color: rgba(240, 246, 252, 0.05) !important"
+                          >
+                            <p class="meta-text small text-secondary">
+                              Posted {{ deal.data.created | date: 'lll' }} via
+                              <a
+                                [href]="'https://reddit.com' + deal.data.permalink"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                (click)="$event.stopPropagation()"
+                              >
+                                reddit
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Carousel Controls -->
+      @if (data().length > 1) {
+        <button
+          class="custom-carousel-control-prev custom-carousel-btn"
+          type="button"
+          (click)="prev()"
+          aria-label="Previous Slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+            />
+          </svg>
+        </button>
+        <button
+          class="custom-carousel-control-next custom-carousel-btn"
+          type="button"
+          (click)="next()"
+          aria-label="Next Slide"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+            />
+          </svg>
+        </button>
+      }
+    </div>
+  </div>
+}

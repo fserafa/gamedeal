@@ -1,0 +1,69 @@
+<app-layout>
+  <h1 class="visually-hidden">gamedeal.ga - Game Deals and Free Games Hub</h1>
+  @if (loading()) {
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height: 70vh;">
+      <div class="spinner-border pulse-spinner mb-3" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="text-secondary small fw-medium">Fetching the latest awesome deals...</p>
+    </div>
+  } @else {
+    <!-- Free Games Carousel Section -->
+    @if (paginatedFreeGames().length > 0) {
+      <app-custom-carousel [data]="paginatedFreeGames()"></app-custom-carousel>
+    }
+
+    <!-- Divider or spacer -->
+    <div class="my-5"></div>
+
+    <!-- Deals List Section -->
+    @if (paginatedDeals().length > 0) {
+      <app-deals [deals]="paginatedDeals()[dealsActiveIndex()]"></app-deals>
+      
+      <!-- Pagination Controls -->
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-10">
+          <nav aria-label="Page navigation" class="d-flex justify-content-center">
+            <ul class="pagination">
+              <!-- Previous Button -->
+              <li class="page-item" [class.disabled]="dealsActiveIndex() === 0">
+                <button 
+                  class="page-link" 
+                  (click)="setPage('prev')" 
+                  [disabled]="dealsActiveIndex() === 0"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </button>
+              </li>
+
+              <!-- Page Numbers -->
+              @for (page of paginatedDeals(); track $index) {
+                <li class="page-item" [class.active]="$index === dealsActiveIndex()">
+                  <button class="page-link" (click)="setPage('index', $index)">
+                    {{ $index + 1 }}
+                  </button>
+                </li>
+              }
+
+              <!-- Next Button -->
+              <li class="page-item" [class.disabled]="dealsActiveIndex() === paginatedDeals().length - 1">
+                <button 
+                  class="page-link" 
+                  (click)="setPage('next')" 
+                  [disabled]="dealsActiveIndex() === paginatedDeals().length - 1"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    }
+
+    <!-- About Section -->
+    <app-about></app-about>
+  }
+</app-layout>

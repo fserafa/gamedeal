@@ -1,0 +1,13 @@
+.github-btn {
+  border-color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.github-btn:hover {
+  background: var(--accent-color) !important;
+  color: #0d1117 !important;
+}
